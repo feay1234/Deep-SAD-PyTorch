@@ -30,6 +30,9 @@ class ODDSADDataset(BaseADDataset):
         idx, _, semi_targets = create_semisupervised_setting(train_set.targets.cpu().data.numpy(), self.normal_classes,
                                                              self.outlier_classes, self.known_outlier_classes,
                                                              ratio_known_normal, ratio_known_outlier, ratio_pollution)
+        print(semi_targets)
+        print(train_set.semi_targets.shape)
+        print(idx)
         train_set.semi_targets[idx] = torch.tensor(semi_targets)  # set respective semi-supervised labels
 
         # Subset train_set to semi-supervised setup
